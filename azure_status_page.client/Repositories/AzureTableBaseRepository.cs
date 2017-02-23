@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage;
 
-namespace azure_status_page.core
+namespace azure_status_page.client.Repositories
 {
 	public class AzureTableBaseRepository
 	{

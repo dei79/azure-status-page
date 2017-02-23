@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace azure_status_page.core
+namespace azure_status_page.client.Models
 {
 	public class MeterInstance : MeterDefinition
 	{
@@ -12,6 +12,10 @@ namespace azure_status_page.core
 		public DateTime MeterInstanceTimestamp { get; set; }
 
 		public MeterInstance() { }
+
+		public MeterInstance(MeterDefinition baseDefinition)
+			: base(baseDefinition)
+		{ }
 
 		public MeterInstance(MeterInstance src)
 			: base(src)

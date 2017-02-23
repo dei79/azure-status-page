@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using azure_status_page.client.Contracts.Repositories;
+using azure_status_page.client.Models;
+using azure_status_page.client.Repositories.Entities;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace azure_status_page.core
+namespace azure_status_page.client.Repositories
 {
 	public class AzureTableMeterInstanceRepository : AzureTableBaseRepository, IMeterInstanceRepository
 	{		
@@ -35,6 +38,27 @@ namespace azure_status_page.core
 
 			// done
 			return result;
+		}
+
+		public void StoreInstance(MeterInstance instance)
+		{
+			// Create the table client.
+			CloudTableClient tableClient = StorageAccount.CreateCloudTableClient();
+
+			// Retrieve a reference to the table.
+			CloudTable table = tableClient.GetTableReference(StorageTable);
+
+			// Create the batch operation.
+			TableBatchOperation batchOperation = new TableBatchOperation();
+
+			// Generate the table store entity
+			var entity = MeterInstanceTableEntity.FromModel(instance);
+
+			// Add the entity to the batch
+			batchOperation.InsertOrMerge(entity);
+
+			// Merge
+			table.ExecuteBatch(batchOperation);
 		}
 	}
 }

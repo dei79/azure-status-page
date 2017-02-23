@@ -1,14 +1,17 @@
 ﻿using System;
+using azure_status_page.client.Models;
 using Microsoft.WindowsAzure.Storage.Table;
 
-namespace azure_status_page.core
+namespace azure_status_page.client.Repositories.Entities
 {
-	public class MeterInstanceTableEntity : TableEntity
+	internal class MeterInstanceTableEntity : TableEntity
 	{
 		public MeterInstanceTableEntity(string MeterId, string MeterInstanceId)
 		{
 			this.PartitionKey = MeterId;
 			this.RowKey = MeterInstanceId;
+			this.MeterId = MeterId;
+			this.MeterInstanceId = MeterInstanceId;
 		}
 
 		public MeterInstanceTableEntity() { }
@@ -35,6 +38,19 @@ namespace azure_status_page.core
 				MeterInstanceValue = new Decimal(this.MeterInstanceValue),
 				MeterInstanceTimestamp = DateTime.Parse(this.MeterInstanceTimestamp)
 			};	
+		}
+
+		public static MeterInstanceTableEntity FromModel(MeterInstance instance)
+		{
+			return new MeterInstanceTableEntity(instance.MeterId, instance.MeterInstanceId)
+			{
+				MeterName = instance.MeterName,
+				MeterCategory = instance.MeterCategory,
+				MeterType = Convert.ToDouble(Convert.ToInt32(instance.MeterType)),
+				MeterValue = Convert.ToDouble(instance.MeterValue),
+				MeterInstanceValue = Convert.ToDouble(instance.MeterInstanceValue),
+				MeterInstanceTimestamp = instance.MeterInstanceTimestamp.ToString("yyyy-MM-ddTHH:mm:ssZ")
+			};
 		}
 	}
 }

@@ -40,3 +40,5 @@ Thumbs.db
 *.dotCover
 *.nupkg
 azure_status_page/App_Data/WebJob
+
+credentials.json
