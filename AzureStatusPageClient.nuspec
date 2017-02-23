@@ -13,7 +13,6 @@
     <tags>status-page status monitoring siteextension meters</tags>
   </metadata>
   <files>
-  <files>
     <file src="bin\Release\azure_status_page.client.dll" target="lib\net40" />
   </files>    
 </package>
