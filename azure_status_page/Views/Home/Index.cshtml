@@ -7,11 +7,11 @@
 @if (!Model.Valid) {
 <div class="alert alert-danger" role="alert">
 	Please enter a valid storage account and fill out the customization options to generate a 
-	valid configuration.
+	valid configuration. Currently no status page will be generated!
 </div>
 }
 
-@if (!ViewBag.WebJobInstalled) {
+@if (!ViewBag.WebJobInstalled && Model.Valid) {
 <div class="alert alert-warning" role="alert">
 	Azure Status Pages implements the recurring update via webjob. This webjob is currently not installed. 
 	Please install the webjob to generate a status page<br/><br/>
@@ -91,16 +91,21 @@
 
 @section NavBar {
 	<ul class="nav navbar-nav navbar-right">
+	<!--
 		<li style="margin-right: 10px;">
 			@using (Html.BeginForm("Generate", "Home", new { @class="navbar-form" })) {
 				<input type="submit" class="btn btn-success navbar-btn" value="Re-Generate Status Page">
 			}
 		</li>
+	-->
+	
+	@if(Model.Valid) {
 		<li>
 			@using (Html.BeginForm("Install", "Home", new { @class="navbar-form" })) {
 				<input type="submit" class="btn btn-success navbar-btn" value="Re-Install WebJob">
 			}
 		</li>
+	}
 
 	</ul>
 }
