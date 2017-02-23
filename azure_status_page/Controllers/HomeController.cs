@@ -12,12 +12,22 @@ namespace azure_status_page.Controllers
 	public class HomeController : Controller
 	{
 		private SiteExtensionConfigurationService configService = new SiteExtensionConfigurationService();
+		private AzureWebJobInstaller webJobInstaller = new AzureWebJobInstaller("CheckMetersAndUpdateSite", Path.Combine(AzureEnvironmentService.SiteExtensionLocation, "App_Data", "WebJob"), AzureEnvironmentService.WebSiteLocation);
+
+		private void PrepareViewBag()
+		{
+			// check if the webjob is installed 
+			ViewBag.WebJobInstalled = webJobInstaller.IsWebJobInstalled();
+		}
 
 		[HttpGet]
 		public ActionResult Index()
 		{
 			// load the configuration
 			var config = configService.LoadConfiguration();
+
+			// prepare our default view bag
+			PrepareViewBag();
 
 			// render the config
 			return View(config);
@@ -27,12 +37,12 @@ namespace azure_status_page.Controllers
 		public ActionResult Index(MeterStorageConfigurationModel config)
 		{
 			// store the config
-			if (!configService.VerifyAndStoreConfiguration(config))
-				ViewBag.Error = "Failed to store the configuration";
-			else
-				ViewBag.Success = "Stored the configuration successfully";
+			configService.VerifyAndStoreConfiguration(config);
 
-			// render the view again
+			// prepare our default view bag
+			PrepareViewBag();
+
+			// render the config
 			return View(config);
 		}
 
@@ -40,10 +50,19 @@ namespace azure_status_page.Controllers
 		public ActionResult Install()
 		{
 			// install the webjob
-			var webJobInstaller = new AzureWebJobInstaller("CheckMetersAndUpdateSite", Path.Combine(AzureEnvironmentService.SiteExtensionLocation, "App_Data", "WebJob"), AzureEnvironmentService.WebSiteLocation);
 			webJobInstaller.InstallOrUpdateWebJob();
 
-			// render the view again
+			// render the config
+			return RedirectToAction("Index");
+		}
+
+		[HttpPost]
+		public ActionResult Generate()
+		{
+			// prepare our default view bag
+			PrepareViewBag();
+
+			// render the config
 			return RedirectToAction("Index");
 		}
 

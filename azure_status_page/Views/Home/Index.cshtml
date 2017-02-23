@@ -1,72 +1,106 @@
 ﻿@model azure_status_page.core.MeterStorageConfigurationModel
 
 @{
-    ViewBag.Title = "Azure Status Page - Configuration";
+    ViewBag.Title = "Azure Status Page Generator - Configuration";
 }
 
-<h2>Configuration</h2>
+@if (!Model.Valid) {
+<div class="alert alert-danger" role="alert">
+	Please enter a valid storage account and fill out the customization options to generate a 
+	valid configuration.
+</div>
+}
 
-@using(Html.BeginForm()) {
+@if (!ViewBag.WebJobInstalled) {
+<div class="alert alert-warning" role="alert">
+	Azure Status Pages implements the recurring update via webjob. This webjob is currently not installed. 
+	Please install the webjob to generate a status page<br/><br/>
+	
+	@using (Html.BeginForm("Install", "Home")) {
+		<input type="submit" class="btn btn-success" value="Install or Update WebJob">
+	}
+</div>
+
+}
+
+@using(Html.BeginForm("Index", "Home", FormMethod.Post, new { @class="form-horizontal", role="form" })) {
 
 	<fieldset>
-
-		<legend>Customizing</legend>
-
-		<div class="editor-label">
-			@Html.LabelFor(model => model.Title)
-		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.Title)
-		</div>
-
-		<div class="editor-label">
-			@Html.LabelFor(model => model.Brand)
-		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.Brand)
+		<legend>Style & Theming</legend>
+	
+		<div class="form-group">
+    		@Html.LabelFor(m => m.Title, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.Title)
+		    	@Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
 		</div>
 
-		<div class="editor-label">
-			@Html.LabelFor(model => model.FavIcon)
+		<div class="form-group">
+    		@Html.LabelFor(m => m.Brand, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.Brand)
+		    	@Html.EditorFor(m => m.Brand, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
 		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.FavIcon)
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.FavIcon, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.FavIcon)
+		    	@Html.EditorFor(m => m.FavIcon, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
 		</div>
 
 	</fieldset>
-
 	<fieldset>
+		<legend>Storage Account Information</legend>
 
-		<legend>Storage Account</legend>
-
-		<div class="editor-label">
-			@Html.LabelFor(model => model.StorageKey)
-		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.StorageKey)
-		</div>
-
-		<div class="editor-label">
-			@Html.LabelFor(model => model.StorageSecret)
-		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.StorageSecret)
+		<div class="form-group">
+    		@Html.LabelFor(m => m.StorageKey, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.StorageKey)
+		    	@Html.EditorFor(m => m.StorageKey, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
 		</div>
 
-		<div class="editor-label">
-			@Html.LabelFor(model => model.StorageTableName)
-		</div>
-		<div class="editor-field">
-			@Html.TextBoxFor(model => model.StorageTableName)
+		<div class="form-group">
+    		@Html.LabelFor(m => m.StorageSecret, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.StorageSecret)
+		    	@Html.EditorFor(m => m.StorageSecret, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
 		</div>
 
+		<div class="form-group">
+    		@Html.LabelFor(m => m.StorageTableName, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.StorageTableName)
+		    	@Html.EditorFor(m => m.StorageTableName, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+	
 	</fieldset>
 
-	<input type="submit" value="Save">
+	<div class="form-group">
+    	<div class="col-sm-offset-2 col-sm-10">
+      		<button type="submit" class="btn btn-primary">Save Settings</button>
+    	</div>
+  	</div>  		
 }
 
-@using (Html.BeginForm("Install", "Home")) {
-	<input type="submit" value="Install or Update WebJob">
+@section NavBar {
+	<ul class="nav navbar-nav navbar-right">
+		<li style="margin-right: 10px;">
+			@using (Html.BeginForm("Generate", "Home", new { @class="navbar-form" })) {
+				<input type="submit" class="btn btn-success navbar-btn" value="Re-Generate Status Page">
+			}
+		</li>
+		<li>
+			@using (Html.BeginForm("Install", "Home", new { @class="navbar-form" })) {
+				<input type="submit" class="btn btn-success navbar-btn" value="Re-Install WebJob">
+			}
+		</li>
+
+	</ul>
 }
-
-
