@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_status_page", "azure_status_page\azure_status_page.csproj", "{25464043-8444-49E0-8EDE-566B1409D7DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_status_page.Tests", "azure_status_page.Tests\azure_status_page.Tests.csproj", "{E4CB4498-723E-4C4A-9E0F-CBCD57603173}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_status_page.core", "azure_status_page.core\azure_status_page.core.csproj", "{31878B8D-7325-47B0-BF2B-1809B72E63EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "azure_status_page.jobs", "azure_status_page.jobs\azure_status_page.jobs.csproj", "{FF395F21-BE10-4C4F-A27C-238AD6697C5E}"
@@ -19,10 +17,6 @@ Global
 		{25464043-8444-49E0-8EDE-566B1409D7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25464043-8444-49E0-8EDE-566B1409D7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25464043-8444-49E0-8EDE-566B1409D7DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4CB4498-723E-4C4A-9E0F-CBCD57603173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4CB4498-723E-4C4A-9E0F-CBCD57603173}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4CB4498-723E-4C4A-9E0F-CBCD57603173}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4CB4498-723E-4C4A-9E0F-CBCD57603173}.Release|Any CPU.Build.0 = Release|Any CPU
 		{31878B8D-7325-47B0-BF2B-1809B72E63EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31878B8D-7325-47B0-BF2B-1809B72E63EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31878B8D-7325-47B0-BF2B-1809B72E63EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
