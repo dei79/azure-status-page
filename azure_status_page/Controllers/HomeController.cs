@@ -40,7 +40,7 @@ namespace azure_status_page.Controllers
 		public ActionResult Install()
 		{
 			// install the webjob
-			var webJobInstaller = new AzureWebJobInstaller("CheckMetersAndUpdateSite", Path.Combine(Server.MapPath("/"), "App_Data", "WebJob"), AzureEnvironmentService.WebSiteLocation);
+			var webJobInstaller = new AzureWebJobInstaller("CheckMetersAndUpdateSite", Path.Combine(AzureEnvironmentService.SiteExtensionLocation, "App_Data", "WebJob"), AzureEnvironmentService.WebSiteLocation);
 			webJobInstaller.InstallOrUpdateWebJob();
 
 			// render the view again

@@ -29,7 +29,7 @@ namespace azure_status_page.core
 				Directory.CreateDirectory(WebJobDirectory);
 
 			// Copy all files from the src directory to the WebJobDirectory
-			DirectoryEx.Copy(SrcDirectory, WebJobDirectory);
+			DirectoryEx.Copy(SrcDirectory, WebJobDirectory, true);
 		}
 	}
 }
