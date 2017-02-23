@@ -13,11 +13,11 @@
     <tags>status-page status monitoring siteextension meters</tags>
   </metadata>
   <files>
-    <file src="azure_status_page/bin/**/*.*" target="content/bin" />
-    <file src="azure_status_page/Views/**/*.*" target="content/Views" />
-    <file src="azure_status_page/App_Data/**/*.*" target="content/App_Data" />
-    <file src="azure_status_page/applicationHost.xdt" target="content" />
-    <file src="azure_status_page/Global.asax" target="content" />
-    <file src="azure_status_page/Web.config" target="content" />
+    <file src="azure_status_page\bin\**\*.*" target="content" />
+    <file src="azure_status_page\Views\**\*.*" target="content" />
+    <file src="azure_status_page\App_Data\**\*.*" target="content" />
+    <file src="azure_status_page\applicationHost.xdt" target="content" />
+    <file src="azure_status_page\Global.asax" target="content" />
+    <file src="azure_status_page\Web.config" target="content" />
   </files>
 </package>
