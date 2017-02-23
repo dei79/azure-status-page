@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{Title}}</title>
+
+    <!-- FavIcon -->
+    <link rel="shortcut icon" href="{{FavIcon}}" type="image/x-icon" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Include momentjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+
+    <!-- Some default styles for the Status Page -->
+    <style>
+        body {
+            padding-top: 120px;
+        }
+
+        .overall-status-container {
+            margin-bottom: 50px;
+        }
+
+        .overall-status-container .status {
+            font-size: 20px;
+        }
+
+        .overall-status-container .updated {
+            position: relative;
+            top: 7px;
+            font-size: 14px;
+        }
+
+        .services-group .services-group-item .name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .services-group .services-group-item .status {
+            font-size: 14px;
+        }
+
+        .services-group .services-group-item .status.success {
+            color: #2fcc66;
+        }
+
+        .services-group .services-group-item .status.broken {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"><img alt="{{Title}}" src="{{BrandIcon}}"></a>
+                <a class="navbar-brand">{{Title}}</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container overall-status-container">
+        <div class="alert {{Status.StatusClass}}" role="alert">
+            <span class="status">
+                {{Status.StatusMessage}}
+            </span>
+            <span class="updated pull-right" id="statusMoment" data-moment="{{Status.StatusUpdate}}">
+
+            </span>
+        </div>
+    </div>		
+
+    <div class="container">
+        <div class="panel panel-default">
+
+            <ul class="list-group services-group">
+
+                {{#Services}}
+                <li class="list-group-item services-group-item">
+                    <span class="name">
+                        {{ServiceName}}
+                    </span>
+                    <span class="status pull-right {{StatusClass}}">
+                        {{StatusMessage}}
+                    </span>
+                </li>
+                {{/Services}}
+
+            </ul>
+        </div>
+    </div>
+		
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Update the last update state  -->
+    <script type="text/javascript">
+        (function()
+        {
+            {{#Status.StatusUpdate}}			
+            var statusMomentElement = $('#statusMoment');
+			var statusUpdateMoment = moment(statusMomentElement.attr('data-moment'));
+			statusMomentElement.html(statusUpdateMoment.fromNow())            
+            {{/Status.StatusUpdate}}
+
+            {{^Status.StatusUpdate}}
+			$('#statusMoment').html('Never');
+            {{/Status.StatusUpdate}}
+        })();
+    </script>
+</body>
+</html>

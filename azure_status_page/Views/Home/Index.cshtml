@@ -1,0 +1,72 @@
+﻿@model azure_status_page.core.MeterStorageConfigurationModel
+
+@{
+    ViewBag.Title = "Azure Status Page - Configuration";
+}
+
+<h2>Configuration</h2>
+
+@using(Html.BeginForm()) {
+
+	<fieldset>
+
+		<legend>Customizing</legend>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Title)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.Title)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Brand)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.Brand)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.FavIcon)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.FavIcon)
+		</div>
+
+	</fieldset>
+
+	<fieldset>
+
+		<legend>Storage Account</legend>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.StorageKey)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.StorageKey)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.StorageSecret)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.StorageSecret)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.StorageTableName)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.StorageTableName)
+		</div>
+
+	</fieldset>
+
+	<input type="submit" value="Save">
+}
+
+@using (Html.BeginForm("Install", "Home")) {
+	<input type="submit" value="Install or Update WebJob">
+}
+
+

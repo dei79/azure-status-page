@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>azurestatuspage</id>
+    <title>Status Page</title>
+    <version>0.0.1</version>
+    <authors>Dirk Eisenberg</authors>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/dei79/node-azure-status-page</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An extension to implement a status page</description>
+    <iconUrl>https://raw.githubusercontent.com/dei79/node-azure-status-page/master/assets/icon-status-page-30x30.png</iconUrl>
+    <tags>status-page status monitoring siteextension</tags>
+  </metadata>
+  <files>
+    <file src="azure_status_page/bin/**/*.*" target="content/bin" />
+    <file src="azure_status_page/Views/**/*.*" target="content/Views" />
+    <file src="azure_status_page/App_Data/**/*.*" target="content/App_Data" />
+    <file src="azure_status_page/applicationHost.xdt" target="content" />
+    <file src="azure_status_page/Global.asax" target="content" />
+    <file src="azure_status_page/Web.config" target="content" />
+  </files>
+</package>
