@@ -13,9 +13,9 @@
     <tags>status-page status monitoring siteextension meters</tags>
   </metadata>
   <files>
-    <file src="bin\**\*.*" target="content" />
-    <file src="Views\**\*.*" target="content" />
-    <file src="App_Data\**\*.*" target="content" />
+    <file src="bin\**\*.*" target="content\bin" />
+    <file src="Views\**\*.*" target="content\Views" />
+    <file src="App_Data\**\*.*" target="content\App_Data" />
     <file src="applicationHost.xdt" target="content" />
     <file src="Global.asax" target="content" />
     <file src="Web.config" target="content" />
