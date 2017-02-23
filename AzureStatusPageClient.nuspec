@@ -11,8 +11,13 @@
     <description>Client Library to use with the Azure Status Page Site Extension</description>
     <iconUrl>https://raw.githubusercontent.com/dei79/azure-status-page/master/assets/icon-status-page-30x30.png</iconUrl>
     <tags>status-page status monitoring siteextension meters</tags>
+    <dependencies>
+        <group targetFramework="net">          
+            <dependency id="WindowsAzure.Storage" version="8.1.0" />
+        </group>
+    </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\azure_status_page.client.dll" target="lib\net40" />
+    <file src="bin\Release\azure_status_page.client.dll" target="lib\net45" />
   </files>    
 </package>
