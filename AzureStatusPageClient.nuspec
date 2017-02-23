@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>statuspageclient</id>
+    <title>Azure Status Page Client</title>
+    <version>0.0.1</version>
+    <authors>Dirk Eisenberg</authors>
+    <licenseUrl>https://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/dei79/azure-status-page</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Client Library to use with the Azure Status Page Site Extension</description>
+    <iconUrl>https://raw.githubusercontent.com/dei79/azure-status-page/master/assets/icon-status-page-30x30.png</iconUrl>
+    <tags>status-page status monitoring siteextension meters</tags>
+  </metadata>
+  <files>
+  <files>
+    <file src="bin\Release\azure_status_page.client.dll" target="lib\net40" />
+  </files>    
+</package>
