@@ -123,15 +123,13 @@
 
 @section NavBar {
 	<ul class="nav navbar-nav navbar-right">
-	<!--
+	@if(Model.Valid) {
 		<li style="margin-right: 10px;">
 			@using (Html.BeginForm("Generate", "Home", new { @class="navbar-form" })) {
 				<input type="submit" class="btn btn-success navbar-btn" value="Re-Generate Status Page">
 			}
 		</li>
-	-->
-	
-	@if(Model.Valid) {
+
 		<li>
 			@using (Html.BeginForm("Install", "Home", new { @class="navbar-form" })) {
 				<input type="submit" class="btn btn-success navbar-btn" value="Re-Install WebJob">

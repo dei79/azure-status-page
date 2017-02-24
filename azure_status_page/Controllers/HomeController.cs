@@ -59,6 +59,9 @@ namespace azure_status_page.Controllers
 		[HttpPost]
 		public ActionResult Generate()
 		{
+			// Trigger
+			AzureWebJobShutdownService.Peek();
+
 			// prepare our default view bag
 			PrepareViewBag();
 

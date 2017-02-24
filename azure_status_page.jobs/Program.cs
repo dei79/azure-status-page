@@ -17,16 +17,26 @@ namespace azure_status_page.jobs
 			{
 				// generate the waithandle we are using for the innermost loop 
 				ManualResetEvent timeoutHandle = new ManualResetEvent(false);
+				bool bShutdown = false;
 
 				// configure our shutdown handler
 				shutdownService.OnShutdown += (sender) => {					
 					Console.WriteLine("Detected Shutdown, interupting the loop");
+					bShutdown = true;
+					timeoutHandle.Set();
+				};
+
+				shutdownService.OnPeek += (sender) => {
+					Console.WriteLine("Detected Peek, forcing a loop");
 					timeoutHandle.Set();
 				};
 
 				// start the inner most loop
 				do
 				{
+					// reset our event
+					timeoutHandle.Reset();
+
 					// load the config
 					Console.WriteLine("Loading the Azure WebJob Configuration...");
 					var config = (new SiteExtensionConfigurationService()).LoadConfiguration();
@@ -52,7 +62,7 @@ namespace azure_status_page.jobs
 					// done
 					Console.WriteLine("Waiting for the next cycle (5mins)");
 
-				} while (!timeoutHandle.WaitOne(5 * 60 * 1000));
+				} while (!timeoutHandle.WaitOne(5 * 60 * 1000) || !bShutdown);
 			}
 		}
 	}
