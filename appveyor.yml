@@ -1,0 +1,22 @@
+version: 0.0.1.{build}
+configuration: Release
+platform: Any CPU
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+before_build:
+- cmd: nuget restore
+build:
+  verbosity: minimal
+after_build:
+- cmd: >-
+    nuget pack AzureStatusPage.nuspec -Version %APPVEYOR_BUILD_VERSION% -Verbosity detailed -BasePath azure_status_page
+
+    nuget pack AzureStatusPageClient.nuspec -Version %APPVEYOR_BUILD_VERSION% -Verbosity detailed -BasePath azure_status_page.client
+test: off
+artifacts:
+- path: '*.nupkg'
+  name: SiteExtension
