@@ -55,6 +55,12 @@
       <HintPath>..\packages\WindowsAzure.Storage.8.1.0\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.3.9.59\lib\net35\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="PushoverClient">
+      <HintPath>..\packages\PushoverNET.1.0.11\lib\net40\PushoverClient.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +76,8 @@
     <Compile Include="Models\SiteReplacementParameters.cs" />
     <Compile Include="Services\AzureWebJobInstaller.cs" />
     <Compile Include="Extensions\DirectorEx.cs" />
+    <Compile Include="Contracts\Services\INotificationProvider.cs" />
+    <Compile Include="Services\NotificationProviders\PushOverNotificationProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -78,6 +86,7 @@
     <Folder Include="Services\CheckMeterProviders\" />
     <Folder Include="Contracts\Services\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Services\NotificationProviders\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

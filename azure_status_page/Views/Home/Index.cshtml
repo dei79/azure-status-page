@@ -4,6 +4,10 @@
     ViewBag.Title = "Azure Status Page Generator - Configuration";
 }
 
+<style>
+	.checkbox{ margin-top: 10px !important; }
+</style>
+
 @if (!Model.Valid) {
 <div class="alert alert-danger" role="alert">
 	Please enter a valid storage account and fill out the customization options to generate a 
@@ -80,6 +84,34 @@
 			</div>
 		</div>
 	
+	</fieldset>
+
+	<fieldset>
+		<legend>PushOver Integration</legend>
+
+
+		<div class="form-group">
+			@Html.LabelFor(m => m.PushOverEnabled, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">				
+				@Html.CheckBoxFor(m => m.PushOverEnabled, new { @checked = "checked", @class = "checkbox" })
+			</div>
+		</div>
+	
+		<div class="form-group">
+    		@Html.LabelFor(m => m.PushOverToken, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.PushOverToken)
+		    	@Html.EditorFor(m => m.PushOverToken, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.PushOverUser, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.PushOverUser)
+		    	@Html.EditorFor(m => m.PushOverUser, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>	
 	</fieldset>
 
 	<div class="form-group">

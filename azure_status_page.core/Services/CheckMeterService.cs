@@ -4,6 +4,7 @@ using azure_status_page.client;
 using azure_status_page.client.Contracts.Repositories;
 using azure_status_page.client.Models;
 using azure_status_page.client.Repositories;
+using azure_status_page.core.NotificationProviders;
 
 namespace azure_status_page.core
 {
@@ -11,12 +12,17 @@ namespace azure_status_page.core
 	{
 		private IMeterInstanceRepository meterInstanceRepository { get; set; }
 		private Dictionary<nMeterTypes, ICheckMeterProvider> checkMeterProviders { get; set; }
+		private List<INotificationProvider> notificationProviders { get; set; } = new List<INotificationProvider>();
 
 		public CheckMeterService(MeterStorageConfigurationModel config)
 		{
 			meterInstanceRepository = new AzureTableMeterInstanceRepository(config.StorageKey, config.StorageSecret, config.StorageTableName);
 			checkMeterProviders = new Dictionary<nMeterTypes, ICheckMeterProvider>();
 			checkMeterProviders.Add(nMeterTypes.Heartbeat, new HeartbeatCheckMeterProvider());
+
+			// add the notification providers
+			if (config.PushOverEnabled) 
+				notificationProviders.Add(new PushOverNotificationProvider(config.PushOverToken, config.PushOverUser));
 		}
 
 		public List<MeterCheckResult> Check()
@@ -41,6 +47,19 @@ namespace azure_status_page.core
 			}
 
 			return result;
+		}
+
+		public void Notify(List<MeterCheckResult> checkResults)
+		{
+			foreach (var checkResult in checkResults)
+			{
+				if (checkResult.MeterCheckPassed) { continue; }
+
+				foreach (var notificationProvider in notificationProviders)
+				{
+					notificationProvider.notify(checkResult);
+				}
+			}
 		}
 	}
 }

@@ -32,6 +32,10 @@ namespace azure_status_page.core
 			var lookUpTable = new Dictionary<string, ServiceStatusParameters>();
 			foreach (var meterCheckResult in meterCheckResults)
 			{
+				// adapt the meter category
+				if (meterCheckResult.MeterCategory == null)
+					meterCheckResult.MeterCategory = meterCheckResult.MeterName;
+				
 				// check if we have a status for this category
 				if (!lookUpTable.ContainsKey(meterCheckResult.MeterCategory))
 				{

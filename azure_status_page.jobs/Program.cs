@@ -37,7 +37,8 @@ namespace azure_status_page.jobs
 					var results = checkMeterService.Check();
 
 					// notify if needed
-
+					Console.WriteLine("Notify failed Meters");
+					checkMeterService.Notify(results);
 
 					// get the path of the job 
 					var jobAssetPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Assets");
