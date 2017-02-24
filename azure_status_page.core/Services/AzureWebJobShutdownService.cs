@@ -40,8 +40,12 @@ namespace azure_status_page.core
 
 		private static string GetPeekFileName()
 		{
-			var triggerFileName = AzureWebJobShutdownService.GetShutdownFileName();
-			return Path.Combine(Path.GetDirectoryName(triggerFileName), "peek.notify");
+			var triggerFileName = "/tmp/peek.notify";
+					
+			if (Environment.GetEnvironmentVariable("home") != null)
+				triggerFileName = Environment.ExpandEnvironmentVariables(@"%HOME%\data\StatusPage\peek.notify");
+
+			return triggerFileName;
 		}
 
 		private void OnChanged(object sender, FileSystemEventArgs e)
