@@ -78,6 +78,8 @@
     <Compile Include="Extensions\DirectorEx.cs" />
     <Compile Include="Contracts\Services\INotificationProvider.cs" />
     <Compile Include="Services\NotificationProviders\PushOverNotificationProvider.cs" />
+    <Compile Include="Services\CheckMeterProviders\MinValueCheckMeterProvider.cs" />
+    <Compile Include="Services\CheckMeterProviders\MaxValueCheckMeterProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

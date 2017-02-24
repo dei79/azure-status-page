@@ -19,6 +19,8 @@ namespace azure_status_page.core
 			meterInstanceRepository = new AzureTableMeterInstanceRepository(config.StorageKey, config.StorageSecret, config.StorageTableName);
 			checkMeterProviders = new Dictionary<nMeterTypes, ICheckMeterProvider>();
 			checkMeterProviders.Add(nMeterTypes.Heartbeat, new HeartbeatCheckMeterProvider());
+			checkMeterProviders.Add(nMeterTypes.MinValue, new MinValueCheckMeterProvider());
+			checkMeterProviders.Add(nMeterTypes.MaxValue, new MaxValueCheckMeterProvider());
 
 			// add the notification providers
 			if (config.PushOverEnabled) 
