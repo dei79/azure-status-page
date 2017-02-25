@@ -32,6 +32,9 @@ namespace azure_status_page.core
 			var result = new List<MeterDefinition>();
 			foreach (var meterInstacen in meterInstances)
 			{
+				if (meterInstacen.MeterInstanceId.StartsWith("Server.", StringComparison.CurrentCulture))
+					continue;
+				
 				if (!meterHash.ContainsKey(meterInstacen.MeterId))
 				{
 					meterHash.Add(meterInstacen.MeterId, meterInstacen);
@@ -63,6 +66,11 @@ namespace azure_status_page.core
 
 		public void DeleteServerSideDefinition(string MeterId, string MeterCheckType)
 		{
+			// delete the instance
+			MeterManagerRepository.DeleteInstance(MeterId, "Server." + MeterId + ".WebCheck");
+			MeterManagerRepository.DeleteInstance(MeterId, "Server." + MeterId + ".HeartBeat");
+
+			// delete the server side definition
 			MeterManagerRepository.DeleteSideDefinition(MeterId, MeterCheckType);
 		}
 
@@ -77,7 +85,7 @@ namespace azure_status_page.core
 				// generate the instance for the heartbeat
 				var meterInstance = new MeterInstance(definition);
 				meterInstance.MeterValue = definition.MeterServerCheckInterval;
-				meterInstance.MeterInstanceId = definition.MeterId + ".HeartBeat";
+				meterInstance.MeterInstanceId = "Server." + definition.MeterId + ".HeartBeat";
 				meterInstance.MeterInstanceTimestamp = DateTime.Now;
 				MeterManagerRepository.StoreInstance(meterInstance);
 
@@ -85,7 +93,7 @@ namespace azure_status_page.core
 				var meterInstanceHttpResult = new MeterInstance(definition);
 				meterInstanceHttpResult.MeterType = nMeterTypes.EqualsValue;
 				meterInstanceHttpResult.MeterValue = definition.MeterValue;
-				meterInstanceHttpResult.MeterInstanceId = definition.MeterId + ".WebCheck";
+				meterInstanceHttpResult.MeterInstanceId = "Server." + definition.MeterId + ".WebCheck";
 				meterInstanceHttpResult.MeterInstanceTimestamp = DateTime.Now;
 
 				// check 

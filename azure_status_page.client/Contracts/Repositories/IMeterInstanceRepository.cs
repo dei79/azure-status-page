@@ -9,5 +9,7 @@ namespace azure_status_page.client.Contracts.Repositories
 		List<MeterInstance> LoadInstances();
 
 		void StoreInstance(MeterInstance instance);
+
+		void DeleteInstance(string MeterId, string MeterInstanceId);
 	}
 }

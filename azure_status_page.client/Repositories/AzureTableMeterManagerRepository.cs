@@ -24,5 +24,10 @@ namespace azure_status_page.client.Repositories
 		{
 			meterInstanceRepository.StoreInstance(instance);
 		}
+
+		public void DeleteInstance(string MeterId, string MeterInstanceId)
+		{
+			meterInstanceRepository.DeleteInstance(MeterId, MeterInstanceId);
+		}
 	}
 }

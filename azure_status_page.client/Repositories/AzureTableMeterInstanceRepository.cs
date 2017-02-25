@@ -18,6 +18,11 @@ namespace azure_status_page.client.Repositories
 			: base(storageKey, storageSecret, storageTable)
 		{ }
 
+		public void DeleteInstance(string MeterId, string MeterInstanceId)
+		{
+			DeleteEntity(StorageTable, MeterId, MeterInstanceId);
+		}
+
 		public List<MeterInstance> LoadInstances()
 		{			
 			// query
