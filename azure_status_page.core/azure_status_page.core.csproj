@@ -80,6 +80,12 @@
     <Compile Include="Services\NotificationProviders\PushOverNotificationProvider.cs" />
     <Compile Include="Services\CheckMeterProviders\MinValueCheckMeterProvider.cs" />
     <Compile Include="Services\CheckMeterProviders\MaxValueCheckMeterProvider.cs" />
+    <Compile Include="Services\MeterManagerEx.cs" />
+    <Compile Include="Contracts\Repositories\IMeterManagerExRepository.cs" />
+    <Compile Include="Repositories\AzureTableMeterManagerExRepository.cs" />
+    <Compile Include="Models\MeterDefinitionServerBased.cs" />
+    <Compile Include="Repositories\Entities\AzureTableMeterDefinitionServerBased.cs" />
+    <Compile Include="Services\CheckMeterProviders\EqualsValueCheckMeterProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -89,6 +95,9 @@
     <Folder Include="Contracts\Services\" />
     <Folder Include="Extensions\" />
     <Folder Include="Services\NotificationProviders\" />
+    <Folder Include="Contracts\Repositories\" />
+    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Entities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

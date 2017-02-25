@@ -1,11 +1,12 @@
 ﻿using System;
 namespace azure_status_page.client.Models
-{	
+{
 	public enum nMeterTypes
 	{
 		Heartbeat = 1,
 		MinValue = 2,
-		MaxValue = 3
+		MaxValue = 3,
+		EqualsValue = 4
 	}
 
 	public class MeterDefinition

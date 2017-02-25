@@ -1,0 +1,75 @@
+﻿@model azure_status_page.ViewModels.MetersViewModel
+
+@{
+    ViewBag.Title = "Meters";
+}
+
+<legend>Client Side Meters</legend>
+@if (Model.ClientSideMeters.Count == 0) {
+	<div class="bs-callout bs-callout-info"> 	
+		<h4>No Meters are defined or no client posted data</h4> 
+		<p>
+		Client side Meters are information delivered from the services as self, e.g. a heartbeat or some complex 
+		technical checks from time to time. This meters will be shown automatically in the status page. To integrate 
+		client side meters check our Status Page SDKs here:
+		</p>
+		<ul>
+			<li>.NET SDK for Client Side Meters - <a href="https://www.nuget.org/packages/statuspageclient/" target="_new">Visit nuget.org</a></li>
+			<li>nodejs SDK for Client Side Meters - <a href="https://www.npmjs.com/package/azure-status-page-client" target="_new">Visit npmjs.com</a></li>
+		</ul>
+		<p>As soon your client is posting data the first time client side meters will be visible here!</p>	
+	</div>
+} else {
+	<table class="table table-bordered">
+		<tr>
+			<th>MeterId</th>
+			<th>Name</th>
+			<th>Category</th>
+			<th>Type</th>
+			<th>Value</th>
+		</tr>
+		@foreach(var item in Model.ClientSideMeters)
+		{
+			<tr>
+				<td>@item.MeterId</td>
+				<td>@item.MeterName</td>
+				<td>@item.MeterCategory</td>
+				<td>@item.MeterType</td>
+				<td>@item.MeterValue</td>
+			</tr>
+		}
+	</table>
+}
+
+<legend>Status Page Meters (Server Based Meters)</legend>
+<div class="bs-callout bs-callout-info"> 	
+	<h4>Register Meters manually</h4> 
+	<p>
+	Status Page Meters are executed in the App Service the Status Page is hosted and can be used to check specific
+	metrics from outside of the applicaton, e.g. the availability of a specific application
+	</p>
+</div>
+<table class="table table-bordered">
+	<tr>
+		<th>MeterId</th>
+		<th>Name</th>
+		<th>Category</th>
+		<th>Type</th>
+		<th>Value</th>
+		<th style="width: 100px; text-align: center; "><a href="/meters/add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a></th>
+	</tr>
+	@foreach(var item in Model.StatusPageMeters)
+	{
+		<tr>
+			<td>@item.MeterId</td>
+			<td>@item.MeterName</td>
+			<td>@item.MeterCategory</td>
+			<td>@item.MeterType / @item.MeterServerCheckType</td>
+			<td>@item.MeterValue</td>
+			<td style="width: 100px; text-align: center; ">
+				<a href="/meters/edit/@item.MeterId.@item.MeterServerCheckType"  class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+				<a href="/meters/delete/@item.MeterId.@item.MeterServerCheckType" class="btn btn-xs btn-danger" onclick = "return confirm('Are you sure you wish to delete this meter?');"><i class="fa fa-trash"></i></a>
+			</td>
+		</tr>
+	}	
+</table>

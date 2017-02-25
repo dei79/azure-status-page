@@ -21,6 +21,7 @@ namespace azure_status_page.core
 			checkMeterProviders.Add(nMeterTypes.Heartbeat, new HeartbeatCheckMeterProvider());
 			checkMeterProviders.Add(nMeterTypes.MinValue, new MinValueCheckMeterProvider());
 			checkMeterProviders.Add(nMeterTypes.MaxValue, new MaxValueCheckMeterProvider());
+			checkMeterProviders.Add(nMeterTypes.EqualsValue, new EqualsValueCheckMeterProvider());
 
 			// add the notification providers
 			if (config.PushOverEnabled) 

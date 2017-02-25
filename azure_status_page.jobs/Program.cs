@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using azure_status_page.core;
+using azure_status_page.core.Repositories;
 
 namespace azure_status_page.jobs
 {
@@ -40,6 +41,11 @@ namespace azure_status_page.jobs
 					// load the config
 					Console.WriteLine("Loading the Azure WebJob Configuration...");
 					var config = (new SiteExtensionConfigurationService()).LoadConfiguration();
+
+					// executing the server side checks
+					Console.WriteLine("Executing Server Side Checks");
+					var meterManagerEx = new MeterManagerEx(config);
+					meterManagerEx.ExecuteServerSideChecks();
 
 					// check the meters
 					Console.WriteLine("Checking the different Meters");

@@ -40,6 +40,10 @@
       <Project>{31878B8D-7325-47B0-BF2B-1809B72E63EC}</Project>
       <Name>azure_status_page.core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\azure_status_page.client\azure_status_page.client.csproj">
+      <Project>{EBD3A11E-FD34-4BF9-8768-BE5A613F7AE7}</Project>
+      <Name>azure_status_page.client</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

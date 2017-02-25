@@ -20,6 +20,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<!-- internal CSS -->
+	<link rel="stylesheet" href="/content/bs-callout.css">
+		
 	<style>
 		body { padding-top: 70px; }
 	</style>		
@@ -43,7 +46,11 @@
 
  			<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				@RenderSection("NavBar", required: false)	      			
+				<ul class="nav navbar-nav">
+					<li><a href="/"><i class="fa fa-home"></i>&nbsp;Home</a></li>
+					<li><a href="/meters"><i class="fa fa-tachometer"></i>&nbsp;Meters</a></li>
+				</ul>		
+				@RenderSection("ActionsBar", required: false)	      			
     		</div><!-- /.navbar-collapse -->				
 		</div>
 	</nav>	

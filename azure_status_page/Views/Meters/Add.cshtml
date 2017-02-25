@@ -1,0 +1,88 @@
+﻿@model azure_status_page.core.Models.MeterDefinitionServerBased
+
+@{
+    ViewBag.Title = "Add Meter";
+}
+
+
+@using(Html.BeginForm("Add", "Meters", FormMethod.Post, new { @class="form-horizontal", role="form" })) {
+	<h3>Add/Edit Status Page Meter</h3>
+
+	<fieldset>
+		<legend>General</legend>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterId, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterId)
+		    	@Html.EditorFor(m => m.MeterId, new { htmlAttributes = new { @class = "form-control", @readonly="readonly" } })
+			</div>
+		</div>
+	
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterName, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterName)
+		    	@Html.EditorFor(m => m.MeterName, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterCategory, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterCategory)
+		    	@Html.EditorFor(m => m.MeterCategory, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterDisplayOrder, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterDisplayOrder)
+		    	@Html.EditorFor(m => m.MeterDisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+	</fieldset>
+
+	<fieldset>
+		<legend>URL to check</legend>
+	
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterServerCheckInformation, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterServerCheckInformation)
+		    	@Html.EditorFor(m => m.MeterServerCheckInformation, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterValue, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterValue)
+		    	@Html.EditorFor(m => m.MeterValue, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+		<div class="form-group">
+    		@Html.LabelFor(m => m.MeterServerCheckInterval, new { @class = "col-sm-2 control-label" })
+			<div class="col-sm-10">
+		    	@Html.ValidationMessageFor(m => m.MeterServerCheckInterval)
+		    	@Html.EditorFor(m => m.MeterServerCheckInterval, new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+
+	</fieldset>
+
+	@Html.HiddenFor(m => m.MeterId, new { id = "MeterId" })
+	@Html.HiddenFor(m => m.MeterType, new { id = "MeterType" })
+	@Html.HiddenFor(m => m.MeterServerCheckType, new { id = "MeterServerCheckType" })
+
+	<div class="form-group">
+    	<div class="col-sm-offset-2 col-sm-10">      		
+			<button type="submit" class="btn btn-primary">
+    				<i class="fa fa-check"></i> Save Meter
+			</button>
+    	</div>
+  	</div>  		
+}
