@@ -21,7 +21,9 @@ namespace azure_status_page.client.Repositories.Entities
 		public String MeterInstanceTimestamp { get; set; }
 		public String MeterId { get; set; }
 		public String MeterName { get; set; }
+
 		public String MeterCategory { get; set; }
+		public Int32 MeterDisplayOrder { get; set; }
 		public Double MeterType { get; set; }
 		public Double MeterValue { get; set; }
 
@@ -32,6 +34,7 @@ namespace azure_status_page.client.Repositories.Entities
 				MeterId = this.MeterId,
 				MeterName = this.MeterName,
 				MeterCategory = this.MeterCategory,
+				MeterDisplayOrder = this.MeterDisplayOrder,
 				MeterType =  (nMeterTypes)Enum.ToObject(typeof(nMeterTypes), Convert.ToInt32(this.MeterType)),
 				MeterValue = new Decimal(this.MeterValue),
 				MeterInstanceId = this.MeterInstanceId,
@@ -46,6 +49,7 @@ namespace azure_status_page.client.Repositories.Entities
 			{
 				MeterName = instance.MeterName,
 				MeterCategory = instance.MeterCategory,
+				MeterDisplayOrder = instance.MeterDisplayOrder,
 				MeterType = Convert.ToDouble(Convert.ToInt32(instance.MeterType)),
 				MeterValue = Convert.ToDouble(instance.MeterValue),
 				MeterInstanceValue = Convert.ToDouble(instance.MeterInstanceValue),

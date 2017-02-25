@@ -39,7 +39,7 @@ namespace azure_status_page.core
 				// check if we have a status for this category
 				if (!lookUpTable.ContainsKey(meterCheckResult.MeterCategory))
 				{
-					var statTemp = new ServiceStatusParameters() { ServiceName = meterCheckResult.MeterCategory, StatusClass = "success", StatusMessage = "Operational" };
+					var statTemp = new ServiceStatusParameters() { ServiceName = meterCheckResult.MeterCategory, StatusClass = "success", StatusMessage = "Operational", ServiceOrder = meterCheckResult.MeterDisplayOrder };
 					replacements.Services.Add(statTemp);
 					lookUpTable.Add(meterCheckResult.MeterCategory, statTemp);
 				}
@@ -55,6 +55,11 @@ namespace azure_status_page.core
 
 				};
 			}
+
+			// order by display order
+			replacements.Services.Sort((ServiceStatusParameters x, ServiceStatusParameters y) => {
+				return x.ServiceOrder.CompareTo(y.ServiceOrder);
+			});
 
 			// Write the file
 			using (TextWriter pageWriter = new StreamWriter(TargetLocation))

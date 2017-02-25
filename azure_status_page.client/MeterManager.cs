@@ -55,7 +55,7 @@ namespace azure_status_page.client
 		/// <param name="meterCategory">Meter category.</param>
 		/// <param name="meterType">Meter type.</param>
 		/// <param name="meterValue">Meter value.</param>
-		public MeterDefinition RegisterMeter(String meterId, String meterName, String meterCategory, nMeterTypes meterType, Decimal meterValue)
+		public MeterDefinition RegisterMeter(String meterId, String meterName, String meterCategory, nMeterTypes meterType, Int32 meterDisplayOrder, Decimal meterValue)
 		{
 			// double check 
 			if (meterCache.ContainsKey(meterId))
@@ -68,6 +68,7 @@ namespace azure_status_page.client
 				MeterId = meterId, 
 				MeterName = meterName, 
 				MeterCategory = meterCategory, 
+				MeterDisplayOrder = meterDisplayOrder,
 				MeterType = meterType, 
 				MeterValue = meterValue 
 			};

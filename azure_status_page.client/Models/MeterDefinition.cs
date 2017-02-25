@@ -15,6 +15,7 @@ namespace azure_status_page.client.Models
 		public String MeterCategory { get; set; }
 		public nMeterTypes MeterType { get; set; }
 		public Decimal MeterValue { get; set; }
+		public Int32 MeterDisplayOrder { get; set; }
 
 		public MeterDefinition() { }
 
@@ -25,6 +26,7 @@ namespace azure_status_page.client.Models
 			MeterCategory = src.MeterCategory;
 			MeterType = src.MeterType;
 			MeterValue = src.MeterValue;
+			MeterDisplayOrder = src.MeterDisplayOrder;
 		}
 	}
 }

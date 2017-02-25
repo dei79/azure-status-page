@@ -22,7 +22,7 @@ namespace azure_status_page.client.demo
 			MeterManager.Instance.ConfigureAzureTableStoreRepository(d.key, d.secret, "MeterInformation");
 
 			// Define a meter, e.g. a heartbeat for a continous job
-			var meterId = MeterManager.Instance.RegisterMeter(meterHeartBeatMeterId, "Image Processing", "Background Processing", nMeterTypes.Heartbeat, 500).MeterId;
+			var meterId = MeterManager.Instance.RegisterMeter(meterHeartBeatMeterId, "Image Processing", "Background Processing", nMeterTypes.Heartbeat, 100, 500).MeterId;
 
 			// Update this meter with the hearbeat
 			MeterManager.Instance.UpdateMeter(meterId, "Node01.WebJob01.ImgProcessing");

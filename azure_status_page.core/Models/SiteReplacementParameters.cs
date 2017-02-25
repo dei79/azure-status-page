@@ -13,6 +13,7 @@ namespace azure_status_page.core
 	public class ServiceStatusParameters : SiteReplacementStatusParameters
 	{
 		public String ServiceName { get; set; }
+		public Int32 ServiceOrder { get; set; }
 	}
 
 	public class SiteReplacementParameters
