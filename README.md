@@ -33,7 +33,6 @@ There are several SaaS services offering a solution, e.g. https://statuspage.io.
 ![Final](https://github.com/dei79/azure-status-page/blob/master/docs/extension-result.png)
 
 ## Meters
-TODO: Add Picture here
 
 ### Client Side Meters
 Client side Meters are information delivered from the services as self, e.g. a heartbeat or some complex technical checks from time to time. This meters will be shown automatically in the status page. To integrate client side meters check the Status Page SDKs here:
