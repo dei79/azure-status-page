@@ -32,28 +32,36 @@ namespace azure_status_page.core
 			var lookUpTable = new Dictionary<string, ServiceStatusParameters>();
 			foreach (var meterCheckResult in meterCheckResults)
 			{
-				// adapt the meter category
-				if (meterCheckResult.MeterCategory == null)
-					meterCheckResult.MeterCategory = meterCheckResult.MeterName;
-				
-				// check if we have a status for this category
-				if (!lookUpTable.ContainsKey(meterCheckResult.MeterCategory))
+				try
 				{
-					var statTemp = new ServiceStatusParameters() { ServiceName = meterCheckResult.MeterCategory, StatusClass = "success", StatusMessage = "Operational", ServiceOrder = meterCheckResult.MeterDisplayOrder };
-					replacements.Services.Add(statTemp);
-					lookUpTable.Add(meterCheckResult.MeterCategory, statTemp);
+					// adapt the meter category
+					if (meterCheckResult.MeterCategory == null)
+						meterCheckResult.MeterCategory = meterCheckResult.MeterName;
+
+					// check if we have a status for this category
+					if (!lookUpTable.ContainsKey(meterCheckResult.MeterCategory))
+					{
+						var statTemp = new ServiceStatusParameters() { ServiceName = meterCheckResult.MeterCategory, StatusClass = "success", StatusMessage = "Operational", ServiceOrder = meterCheckResult.MeterDisplayOrder };
+						replacements.Services.Add(statTemp);
+						lookUpTable.Add(meterCheckResult.MeterCategory, statTemp);
+					}
+
+					var stat = lookUpTable[meterCheckResult.MeterCategory];
+					if (!meterCheckResult.MeterCheckPassed)
+					{
+						stat.StatusClass = "broken";
+						stat.StatusMessage = "Service Degradation";
+
+						// update overall status
+						replacements.Status.StatusClass = "alert-warning";
+						replacements.Status.StatusMessage = "Minor service outage";
+
+					};
 				}
-
-				var stat = lookUpTable[meterCheckResult.MeterCategory];
-				if (!meterCheckResult.MeterCheckPassed) { 
-					stat.StatusClass = "broken"; 
-					stat.StatusMessage = "Service Degradation"; 
-
-					// update overall status
-					replacements.Status.StatusClass = "alert-warning";
-					replacements.Status.StatusMessage = "Minor service outage";
-
-				};
+				catch (Exception e)
+				{
+					Console.WriteLine("Ignoring meter " + meterCheckResult.MeterInstanceId + ": " + e.Message);
+				}
 			}
 
 			// order by display order
