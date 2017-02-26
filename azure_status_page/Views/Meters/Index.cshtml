@@ -56,7 +56,7 @@
 		<th>Category</th>
 		<th>Type</th>
 		<th>Value</th>
-		<th style="width: 100px; text-align: center; "><a href="/meters/add" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a></th>
+		<th style="width: 100px; text-align: center; "><a href="@Url.Action("Add", "Meters")" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a></th>
 	</tr>
 	@foreach(var item in Model.StatusPageMeters)
 	{
@@ -67,8 +67,8 @@
 			<td>@item.MeterType / @item.MeterServerCheckType</td>
 			<td>@item.MeterValue</td>
 			<td style="width: 100px; text-align: center; ">
-				<a href="/meters/edit/@item.MeterId.@item.MeterServerCheckType"  class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
-				<a href="/meters/delete/@item.MeterId.@item.MeterServerCheckType" class="btn btn-xs btn-danger" onclick = "return confirm('Are you sure you wish to delete this meter?');"><i class="fa fa-trash"></i></a>
+				<a href="@Url.Action("Add", "Meters", new { Id = @item.MeterId + "." + @item.MeterServerCheckType })"  class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></a>
+				<a href="@Url.Action("Delete", "Meters", new { Id = @item.MeterId + "." + @item.MeterServerCheckType })" class="btn btn-xs btn-danger" onclick = "return confirm('Are you sure you wish to delete this meter?');"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 	}	
