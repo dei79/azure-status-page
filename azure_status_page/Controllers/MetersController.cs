@@ -77,26 +77,22 @@ namespace azure_status_page.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Edit(String Id) 
+		public ActionResult Edit(String Id, String CheckType) 
 		{ 
 			// instantiate the meter manager
 			var meterManagerEx = initializeMeterManager();
-
-			var meterId = Id.Split('.');
-			var meterDefinition = meterManagerEx.GetServerBasedDefinition(meterId[0], meterId[1]);
+			var meterDefinition = meterManagerEx.GetServerBasedDefinition(Id, CheckType);
 
 			// show the dialog
 			return View("Add", meterDefinition);
 		}
 
 		[HttpGet]
-		public ActionResult Delete(String Id)
+		public ActionResult Delete(String Id, String CheckType)
 		{
 			// instantiate the meter manager
 			var meterManagerEx = initializeMeterManager();
-
-			var meterId = Id.Split('.');
-			meterManagerEx.DeleteServerSideDefinition(meterId[0], meterId[1]);
+			meterManagerEx.DeleteServerSideDefinition(Id, CheckType);
 
 			// Render the meters
 			return RedirectToAction("Index");
