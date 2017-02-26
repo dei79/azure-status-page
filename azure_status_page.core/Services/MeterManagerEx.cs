@@ -105,9 +105,16 @@ namespace azure_status_page.core
 					var response = request.GetResponse() as HttpWebResponse;
 					meterInstanceHttpResult.MeterInstanceValue = Convert.ToInt32(response.StatusCode);
 				}
-				catch (Exception)
+				catch (Exception e)
 				{
-					meterInstanceHttpResult.MeterInstanceValue = -1;
+					if (e is WebException && (((WebException)e).Response as HttpWebResponse) != null)
+					{
+						meterInstanceHttpResult.MeterInstanceValue = Convert.ToInt32(((e as WebException).Response as HttpWebResponse).StatusCode);
+					}
+					else
+					{
+						meterInstanceHttpResult.MeterInstanceValue = -1;
+					}
 				}
 
 				// Logging 
