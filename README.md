@@ -1,4 +1,4 @@
-> We want to let this open source project growm beause of that we are looking for supporters who are using the Status Page Generator in their projects and will extend it as needed. Just contact us via GitHub to contribute and become an active community member!
+> We want to let this open source project grow, beause of that we are looking for supporters who are using the Status Page Generator in their projects and will extend it as needed. Just contact us via GitHub to contribute and become an active community member!
 
 # Azure Status Page Generator
 [![Build status](https://ci.appveyor.com/api/projects/status/nd602nm4y669oijg?svg=true)](https://ci.appveyor.com/project/dei79/azure-status-page)
