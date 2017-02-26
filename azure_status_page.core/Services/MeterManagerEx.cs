@@ -108,6 +108,9 @@ namespace azure_status_page.core
 					meterInstanceHttpResult.MeterInstanceValue = -1;
 				}
 
+				// Logging 
+				Console.WriteLine("Checkking URL: " + definition.MeterServerCheckInformation + " - Result: " + meterInstanceHttpResult.MeterInstanceValue);
+
 				// generate instances per check 
 				MeterManagerRepository.StoreInstance(meterInstanceHttpResult);
 			}
