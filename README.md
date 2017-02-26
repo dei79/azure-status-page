@@ -13,17 +13,24 @@ There are several SaaS services offering a solution, e.g. https://statuspage.io.
 
 ## Solutions Overview
 
-TODO: Add an architecture picture here
+![Image of Status Page Generator Architecture](https://github.com/dei79/azure-status-page/blob/master/docs/arch-overview.png)
 
 ## How to setup
 
 1. Visit the Azure Portal (https://portal.azure.com)
+
 2. Create a new Azure WebSite based on an existing Azure Service Plan or create a new Azure Service Plan for that. (Even the free pricing tier works well) 
+
 3. Visit the "Extensions Menu" and install the "Status Page" Extension
+![Extensions List](https://github.com/dei79/azure-status-page/blob/master/docs/extension-installed.png)
+
 4. Prepare a new Azure Storage Account which can be used from the Status Page service as backend. A Local Redundant account is totally enough. 
+
 5. Visit the Status Page Extension and configure the different details, e.g. the credentials for the storage account or the image the status page should use.
-TODO: Add Picture here
+![Setup Extensiom](https://github.com/dei79/azure-status-page/blob/master/docs/extension-setup.png)
+
 6. Ensure that you installed the WebJob in your Azure WebSite and voila the Status Page will be generated
+![Final](https://github.com/dei79/azure-status-page/blob/master/docs/extension-result.png)
 
 ## Meters
 TODO: Add Picture here
