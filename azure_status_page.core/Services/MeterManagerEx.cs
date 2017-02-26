@@ -100,6 +100,8 @@ namespace azure_status_page.core
 				try
 				{
 					var request = WebRequest.CreateHttp(definition.MeterServerCheckInformation);
+					request.Method = "HEAD";
+					request.Timeout = 1000;
 					var response = request.GetResponse() as HttpWebResponse;
 					meterInstanceHttpResult.MeterInstanceValue = Convert.ToInt32(response.StatusCode);
 				}
